@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Crazydan - Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="flytreeleft@crazydan.org">
+        <!-- Open Graph Metadata -->
+        <meta property="og:site_name" content="Crazydan">
+        <meta property="og:title" content="Crazydan Org.">
+        <meta property="og:description" content="Welcome to crazydan's ideal world.">
+        <meta property="og:image" content="https://crazydan.org/asset/img/icon.png">
+        <meta property="og:url" content="https://crazydan.org/">
+        <!-- Twitter Card Metadata -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Crazydan Org.">
+        <meta name="twitter:description" content="Welcome to crazydan's ideal world.">
+        <meta name="twitter:image:src" content="https://crazydan.org/asset/img/icon.png">
+        <link rel="icon" type="image/x-icon" href="favicon.svg">
+        <style>
+            html, body {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-image: url(asset/img/bg.jpg);
+                background-position: top;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .logo {
+                width: 20em;
+                border-radius: 50%;
+                background-color: #ffffff36;
+                margin-top: 4em;
+                padding-top: 1em;
+                transition: 0.5s;
+            }
+            .logo:hover {
+                background-color: rgba(255, 255, 255, 0.651);
+                cursor: pointer;
+            }
+
+            .link {
+                margin: 1em 1em 0 1em;
+                font-size: 2.5em;
+                color: #dd9d6c;
+                text-decoration: underline;
+                line-height: normal;
+                align-self: center;
+            }
+
+            .arrow.down {
+                box-sizing: border-box;
+                height: 8px;
+                width: 8px;
+                border-style: solid;
+                border-color: #d9996a;
+                border-width: 0px 2px 2px 0px;
+                transform: rotate(45deg);
+                transition: border-width 150ms ease-in-out;
+                margin-top: -4px;
+            }
+
+            .lang-dropdown {
+                display: flex;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+            .dropdown .list .item:hover, .dropdown .toggle:hover {
+                background-color: rgba(255, 255, 255, 0.651);
+                cursor: pointer;
+            }
+            .dropdown .toggle {
+                border-radius: 4px;
+                background-color: rgba(255, 255, 255, 0.21);
+                padding: 6px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                transition: 0.5s;
+            }
+            .dropdown .toggle > img {
+                width: 1.25em;
+                padding: 0 6px 0 0;
+            }
+            .dropdown .list {
+                background-color: rgba(255, 255, 255, 0.21);
+                border-radius: 4px;
+                z-index: 5;
+            }
+            .dropdown .list .item {
+                padding-top: 3px;
+                padding-bottom: 3px;
+                padding-left: 6px;
+                padding-right: 6px;
+                color: #d9996a;
+                display: flex;
+                align-items: center;
+            }
+            .dropdown .list .item:first-child {
+                padding-top: 6px;
+                border-top-right-radius: 4px;
+            }
+            .dropdown .list .item:last-child {
+                padding-bottom: 6px;
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+            .dropdown .list .item > img {
+                width: 1.25em;
+                padding: 0 6px 0 0;
+            }
+            .dropdown .list .item.selected {
+                background-color: rgba(255, 255, 255, 0.651);
+            }
+            .dropdown.toggled .toggle {
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+            .dropdown.toggled .list {
+                border-top-left-radius: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+        // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference#answer-29106129
+        function getFirstBrowserLanguage() {
+            var nav = window.navigator,
+            browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'],
+            i,
+            language;
+
+            // support for HTML 5.1 "navigator.languages"
+            if (Array.isArray(nav.languages)) {
+            for (i = 0; i < nav.languages.length; i++) {
+                language = nav.languages[i];
+                if (language && language.length) {
+                return language;
+                }
+            }
+            }
+
+            // support for other well known properties in browsers
+            for (i = 0; i < browserLanguagePropertyKeys.length; i++) {
+                language = nav[browserLanguagePropertyKeys[i]];
+                if (language && language.length) {
+                    return language;
+                }
+            }
+
+            return "";
+        };
+
+        var app = Elm.Main.init({
+            node: document.getElementById('app'),
+            // https://guide.elm-lang.org/interop/flags.html
+            flags: {
+                lang: getFirstBrowserLanguage().replace(/-.+$/, ''),
+                height: window.innerHeight,
+                width: window.innerWidth
+            }
+        });
+    </script>
+</html>
