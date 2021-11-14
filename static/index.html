@@ -93,7 +93,7 @@
                 bottom: 0;
             }
             .dropdown .list .item:hover, .dropdown .toggle:hover {
-                background-color: rgba(255, 255, 255, 0.651);
+                background-color: rgba(255, 255, 255, 0.74);
                 cursor: pointer;
             }
             .dropdown .toggle {
@@ -110,7 +110,7 @@
                 padding: 0 6px 0 0;
             }
             .dropdown .list {
-                background-color: rgba(255, 255, 255, 0.21);
+                background-color: rgba(255, 255, 255, 0.651);
                 border-radius: 4px;
                 z-index: 5;
             }
@@ -137,7 +137,7 @@
                 padding: 0 6px 0 0;
             }
             .dropdown .list .item.selected {
-                background-color: rgba(255, 255, 255, 0.651);
+                background-color: rgba(255, 255, 255, 0.74);
             }
             .dropdown.toggled .toggle {
                 border-bottom-left-radius: 0px;
@@ -185,7 +185,7 @@
             node: document.getElementById('app'),
             // https://guide.elm-lang.org/interop/flags.html
             flags: {
-                lang: getFirstBrowserLanguage().replace(/-.+$/, ''),
+                lang: getFirstBrowserLanguage(),
                 height: window.innerHeight,
                 width: window.innerWidth
             }

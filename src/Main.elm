@@ -32,9 +32,9 @@ type alias Flags =
     }
 
 type alias Model =
-    { device : Device
+    { lang : String
     , ui_langSwitchDropdown_toggled : Dropdown.State
-    , data_selectedLang : String
+    , ui_device : Device
     }
 
 type alias LangIcon =
@@ -65,9 +65,9 @@ main =
 
 init : Flags -> (Model, Cmd Msg)
 init flags =
-    ( { device = Element.classifyDevice flags
+    ( { lang = flags.lang
+      , ui_device = Element.classifyDevice flags
       , ui_langSwitchDropdown_toggled = False
-      , data_selectedLang = flags.lang
       }
       , Cmd.none
     )
@@ -81,9 +81,9 @@ update msg model =
                 ToggleLangSwitch toggled ->
                     { model | ui_langSwitchDropdown_toggled = toggled }
                 SwitchLangTo lang ->
-                    { model | ui_langSwitchDropdown_toggled = False, data_selectedLang = lang }
+                    { model | ui_langSwitchDropdown_toggled = False, lang = lang }
                 DeviceClassified device ->
-                    { model | device = device }
+                    { model | ui_device = device }
     in
     ( newModel, Cmd.none )
 
@@ -103,8 +103,9 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ onResize
-            ( \width height ->
-                DeviceClassified (Element.classifyDevice { width = width, height = height })
+            ( \w h ->
+                DeviceClassified
+                    ( Element.classifyDevice { width = w, height = h } )
             )
         ]
 
@@ -127,6 +128,14 @@ localLangTextDict =
           )
         ]
 
+simpleLangCode : String -> String
+simpleLangCode code =
+    case ( List.head (String.split "-" code) ) of
+        Just s ->
+            s
+        Nothing ->
+            code
+
 getLocalLangText : String -> String -> String -> String
 getLocalLangText md lang text =
     case ( Dict.get md localLangTextDict ) of
@@ -137,7 +146,11 @@ getLocalLangText md lang text =
                         Just langText ->
                             langText
                         Nothing ->
-                            text
+                            case ( Dict.get (simpleLangCode lang) langTextDict ) of
+                                Just langText ->
+                                    langText
+                                Nothing ->
+                                    text
                 Nothing ->
                     text
         Nothing ->
@@ -172,7 +185,7 @@ showLinks i18n =
 showMainPanel : Model -> Element Msg
 showMainPanel model =
     let
-        i18n = moduleI18n model.data_selectedLang
+        i18n = moduleI18n model.lang
     in
     column
         [ width fill
@@ -193,10 +206,12 @@ showMainPanel model =
             )
           , el
               [ centerX, alignTop ]
-              ( case ( model.device.class, model.device.orientation ) of
+              ( case ( model.ui_device.class, model.ui_device.orientation ) of
+
                     ( Phone, Portrait ) ->
                         column [ centerX ]
                             ( showLinks i18n )
+
                     ( _, _ ) ->
                         row [  ]
                             ( showLinks i18n )
@@ -220,7 +235,7 @@ langIcons =
 
 getLangIcon : String -> LangIcon
 getLangIcon lang =
-    case ( Dict.get lang langIcons ) of
+    case ( Dict.get (simpleLangCode lang) langIcons ) of
         Just icon ->
             icon
         Nothing ->
@@ -228,9 +243,10 @@ getLangIcon lang =
 
 
 showSwitchLang : Model -> Html Msg
-showSwitchLang { ui_langSwitchDropdown_toggled, data_selectedLang } =
+showSwitchLang { lang, ui_langSwitchDropdown_toggled } =
     let
-        selectedLangIcon = getLangIcon data_selectedLang
+        selectedLangIcon = getLangIcon lang
+        simpleLang = simpleLangCode lang
     in
     Html.div
         [ Attr.class "lang-dropdown"
@@ -268,17 +284,17 @@ showSwitchLang { ui_langSwitchDropdown_toggled, data_selectedLang } =
                                     [ Attr.class "list"
                                     ]
                                     ( Dict.foldl
-                                        ( \lang icon acc ->
+                                        ( \code icon acc ->
                                             acc
                                             ++ [ Html.div
                                                     [ Attr.class
                                                         ( "item"
-                                                            ++ ( case (lang == data_selectedLang) of
+                                                            ++ ( case ( code == simpleLang ) of
                                                                 True -> " selected"
                                                                 _ -> ""
                                                             )
                                                         )
-                                                    , Event.onClick (SwitchLangTo lang)
+                                                    , Event.onClick ( SwitchLangTo code )
                                                     ]
                                                     [ Html.img
                                                         [ Attr.src icon.src
