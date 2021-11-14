@@ -52,9 +52,9 @@ type Msg
 -- https://gist.github.com/benkoshy/d0dcd2b09f8fcc65a90b56a33dcf1465
 main : Program Flags Model Msg
 main =
-    -- Note: Browser.sandbox is not suitable
-    -- for Browser.application
-    -- https://gist.github.com/ohanhi/fb6546263965da956f6bfce8f78349e7
+    -- Note: Browser.sandbox is not suitable for Flags
+    -- for Browser.application:
+    -- - https://gist.github.com/ohanhi/fb6546263965da956f6bfce8f78349e7
     Browser.element
         { init = init
         , view = view

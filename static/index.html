@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Crazydan - Welcome</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="flytreeleft@crazydan.org">
         <meta name="renderer" content="webkit">
 
         <meta itemprop="author" name="author" content="flytreeleft@crazydan.org">
-        <meta itemprop="name" name="title" content="Crazydan - Welcome">
+        <meta itemprop="name" name="title" content="Crazydan Org.">
         <meta itemprop="url" content="https://crazydan.org/">
         <meta itemprop="image" content="https://crazydan.org/asset/img/icon.png">
         <meta itemprop="thumbnailUrl" content="https://crazydan.org/asset/img/icon.png">
@@ -146,9 +145,54 @@
             .dropdown.toggled .list {
                 border-top-left-radius: 0px;
             }
+
+            /** https://loading.io/css/ */
+            #loading {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                background-color: rgb(251, 252, 247);
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                z-index: 100;
+                position: absolute;
+            }
+            #loading > svg {
+                width: 15em;
+                height: 15em;
+            }
         </style>
     </head>
     <body>
+        <div id="loading">
+            <!-- https://loading.io/spinner/bean-eater/-pacman-bean-game-video-pie-eat-mouth -->
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <g>
+                  <circle cx="60" cy="50" r="4" fill="#e15b64">
+                    <animate attributeName="cx" repeatCount="indefinite" dur="1s" values="95;35" keyTimes="0;1" begin="-0.67s"></animate>
+                    <animate attributeName="fill-opacity" repeatCount="indefinite" dur="1s" values="0;1;1" keyTimes="0;0.2;1" begin="-0.67s"></animate>
+                  </circle>
+                  <circle cx="60" cy="50" r="4" fill="#e15b64">
+                    <animate attributeName="cx" repeatCount="indefinite" dur="1s" values="95;35" keyTimes="0;1" begin="-0.33s"></animate>
+                    <animate attributeName="fill-opacity" repeatCount="indefinite" dur="1s" values="0;1;1" keyTimes="0;0.2;1" begin="-0.33s"></animate>
+                  </circle>
+                  <circle cx="60" cy="50" r="4" fill="#e15b64">
+                    <animate attributeName="cx" repeatCount="indefinite" dur="1s" values="95;35" keyTimes="0;1" begin="0s"></animate>
+                    <animate attributeName="fill-opacity" repeatCount="indefinite" dur="1s" values="0;1;1" keyTimes="0;0.2;1" begin="0s"></animate>
+                  </circle>
+                </g><g transform="translate(-15 0)">
+                  <path d="M50 50L20 50A30 30 0 0 0 80 50Z" fill="#f8b26a" transform="rotate(90 50 50)"></path>
+                  <path d="M50 50L20 50A30 30 0 0 0 80 50Z" fill="#f8b26a">
+                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;45 50 50;0 50 50" keyTimes="0;0.5;1"></animateTransform>
+                  </path>
+                  <path d="M50 50L20 50A30 30 0 0 1 80 50Z" fill="#f8b26a">
+                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;-45 50 50;0 50 50" keyTimes="0;0.5;1"></animateTransform>
+                  </path>
+                </g>
+            </svg>
+        </div>
         <div id="app"></div>
     </body>
     <script type="text/javascript" src="js/main.min.js"></script>
@@ -190,5 +234,15 @@
                 width: window.innerWidth
             }
         });
+
+        var fadeTimeout = 500;
+        setTimeout(function () {
+            document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
+            document.getElementById('loading').style.opacity = '0';
+
+            setTimeout(function () {
+                document.getElementById('loading').remove();
+            }, fadeTimeout);
+        }, fadeTimeout);
     </script>
 </html>
