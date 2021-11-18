@@ -21,6 +21,13 @@ if ! [ -x "$(command -v uglifyjs)" ]; then
   exit 1
 fi
 
+rm -rf "${DIST_DIR}"
+mkdir -p \
+    "${DIST_DIR}" \
+    "${BUILD_DIR}" \
+    "$(dirname "${MAIN_JS}")" \
+    "$(dirname "${MAIN_MIN_JS}")"
+
 
 echo
 echo "Build Elm source files ..."
