@@ -184,6 +184,7 @@ showLinks i18n =
             newTabLink
                 [ centerX
                 , paddingXY 40 20
+                , Font.size 40
                 , Attr.class "link"
                     |> htmlAttribute
                 ]
