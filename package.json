@@ -1,0 +1,13 @@
+{
+  "name": "crazydan.org",
+  "version": "0.1.0",
+  "homepage": "https://crazydan.org",
+  "private": true,
+  "scripts": {
+    "build": "bash ./build.sh"
+  },
+  "dependencies": {
+    "elm": "^0.19.1-5",
+    "uglifyjs": "^2.4.11"
+  }
+}
