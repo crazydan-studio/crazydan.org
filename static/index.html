@@ -27,6 +27,7 @@
         <meta name="twitter:description" content="Welcome to crazydan's ideal world.">
         <meta name="twitter:image:src" content="https://crazydan.org/asset/img/icon.png">
 
+        <title>Crazydan - Welcome</title>
         <link rel="canonical" href="https://crazydan.org/">
         <link rel="icon" type="image/x-icon" href="favicon.svg">
         <link rel="apple-touch-icon" href="favicon.svg">
@@ -78,7 +79,8 @@
         <div id="app"></div>
     </body>
     <!-- put the stylesheet at the end to prevent the elm-ui styles override the external styles -->
-    <link rel="stylesheet" href="index.css">
+    <!-- async load css: https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously#answer-46750893 -->
+    <link rel="stylesheet" href="index.css" media="print" onload="this.media='all'">
     <script type="text/javascript" src="js/main.min.js"></script>
     <script type="text/javascript">
         // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference#answer-29106129
