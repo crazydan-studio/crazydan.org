@@ -52,31 +52,6 @@
                 flex-direction: column;
             }
 
-            /** https://loading.io/css/ */
-            #loading {
-                height: 100%;
-                width: 100%;
-                min-width: 25em;
-                min-height: 500px;
-                overflow: hidden;
-                background-color: rgb(251, 252, 247);
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                justify-content: center;
-                z-index: 100;
-                position: absolute;
-            }
-            #loading > svg {
-                width: 15em;
-                height: 15em;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="app"></div>
-        <!-- put styles after app element to prevent the elm-ui styles override the custom styles -->
-        <style>
             .logo > img {
                 width: 20em;
                 border-radius: 50%;
@@ -90,12 +65,10 @@
                 cursor: pointer;
             }
 
-            .link {
-                font-size: 2.5em;
+            .link > div {
                 color: #dd9d6c;
                 text-decoration: underline;
                 line-height: normal;
-                align-self: center;
             }
 
             .arrow.down {
@@ -170,7 +143,30 @@
             .dropdown.toggled .list {
                 border-top-left-radius: 0px;
             }
+
+            /** https://loading.io/css/ */
+            #loading {
+                height: 100%;
+                width: 100%;
+                min-width: 25em;
+                min-height: 500px;
+                overflow: hidden;
+                background-color: rgb(251, 252, 247);
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                z-index: 100;
+                position: absolute;
+            }
+            #loading > svg {
+                width: 15em;
+                height: 15em;
+            }
         </style>
+    </head>
+    <body>
+        <div id="app"></div>
         <div id="loading">
             <!-- https://loading.io/spinner/ripple/-ripple-circle-scale-round-radar-radio -->
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
