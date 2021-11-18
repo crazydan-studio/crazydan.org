@@ -24,6 +24,7 @@ import Dropdown
 
 contextPath = ""
 defaultLang = "zh"
+defaultFontSize = 16
 
 type alias Flags =
     { lang : String
@@ -91,10 +92,18 @@ update msg model =
 view : Model -> Html Msg
 view model =
     Element.layout
-        [ Font.size 16
+        [ Font.size defaultFontSize
         , Font.family
             [ Font.serif
             ]
+        , width
+            (fill
+                |> minimum (25 * defaultFontSize)
+            )
+        , height
+            (fill
+                |> minimum (30 * defaultFontSize)
+            )
         ]
         ( showMainPanel model )
 
@@ -171,14 +180,14 @@ linkList =
     ]
 showLinks i18n =
     List.map
-        ( \link ->
-            Html.a
-                [ Attr.href link.url
-                , Attr.target "_blank"
-                , Attr.class "link"
+        ( \lnk ->
+            newTabLink
+                [ Attr.class "link"
+                    |> htmlAttribute
                 ]
-                [ Html.text ( i18n link.title ) ]
-            |> html
+                { url = lnk.url
+                , label = text ( i18n lnk.title )
+                }
         )
         linkList
 
@@ -195,13 +204,14 @@ showMainPanel model =
         [ el
             [ centerX, alignTop ]
             ( row [  ]
-                [ Html.img
-                        [ Attr.src ( contextPath ++ "asset/img/logo.svg" )
-                        , Attr.class "logo"
-                        ]
-                        [  ]
-                  |> html
-                  , ( showSwitchLang model |> html )
+                [ image
+                    [ Attr.class "logo"
+                        |> htmlAttribute
+                    ]
+                    { src = ( contextPath ++ "asset/img/logo.svg" )
+                    , description = ""
+                    }
+                , ( showSwitchLang model |> html )
                 ]
             )
           , el
