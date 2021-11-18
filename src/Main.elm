@@ -182,7 +182,9 @@ showLinks i18n =
     List.map
         ( \lnk ->
             newTabLink
-                [ Attr.class "link"
+                [ centerX
+                , paddingXY 40 20
+                , Attr.class "link"
                     |> htmlAttribute
                 ]
                 { url = lnk.url
@@ -215,7 +217,10 @@ showMainPanel model =
                 ]
             )
           , el
-              [ centerX, alignTop ]
+              [ centerX
+              , alignTop
+              , paddingXY 0 20
+              ]
               ( case ( model.ui_device.class, model.ui_device.orientation ) of
 
                     ( Phone, Portrait ) ->
