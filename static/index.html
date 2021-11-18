@@ -42,6 +42,16 @@
                 padding: 0;
             }
 
+            body {
+                background-image: url(asset/img/bg.jpg);
+                background-position: top;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+
             /** https://loading.io/css/ */
             #loading {
                 height: 100%;
@@ -78,9 +88,103 @@
         </div>
         <div id="app"></div>
     </body>
-    <!-- put the stylesheet at the end to prevent the elm-ui styles override the external styles -->
-    <!-- async load css: https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously#answer-46750893 -->
-    <link rel="stylesheet" href="index.css" media="print" onload="this.media='all'">
+    <!-- put styles at the end to prevent the elm-ui styles override the custom styles -->
+    <style>
+        .logo > img {
+            width: 20em;
+            border-radius: 50%;
+            background-color: #ffffff36;
+            margin-top: 4em;
+            padding-top: 1em;
+            transition: 0.5s;
+        }
+        .logo > img:hover {
+            background-color: rgba(255, 255, 255, 0.651);
+            cursor: pointer;
+        }
+
+        .link {
+            margin: 1em 1em 0 1em;
+            font-size: 2.5em;
+            color: #dd9d6c;
+            text-decoration: underline;
+            line-height: normal;
+            align-self: center;
+        }
+
+        .arrow.down {
+            box-sizing: border-box;
+            height: 8px;
+            width: 8px;
+            border-style: solid;
+            border-color: #d9996a;
+            border-width: 0px 2px 2px 0px;
+            transform: rotate(45deg);
+            transition: border-width 150ms ease-in-out;
+            margin-top: -4px;
+        }
+
+        .lang-dropdown {
+            display: flex;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .dropdown .list .item:hover, .dropdown .toggle:hover {
+            background-color: rgba(255, 255, 255, 0.74);
+            cursor: pointer;
+        }
+        .dropdown .toggle {
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.21);
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .dropdown .toggle > img {
+            width: 1.25em;
+            padding: 0 6px 0 0;
+        }
+        .dropdown .list {
+            background-color: rgba(255, 255, 255, 0.651);
+            border-radius: 4px;
+            z-index: 5;
+        }
+        .dropdown .list .item {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
+            color: #d9996a;
+            display: flex;
+            align-items: center;
+        }
+        .dropdown .list .item:first-child {
+            padding-top: 6px;
+            border-top-right-radius: 4px;
+        }
+        .dropdown .list .item:last-child {
+            padding-bottom: 6px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .dropdown .list .item > img {
+            width: 1.25em;
+            padding: 0 6px 0 0;
+        }
+        .dropdown .list .item.selected {
+            background-color: rgba(255, 255, 255, 0.74);
+        }
+        .dropdown.toggled .toggle {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        .dropdown.toggled .list {
+            border-top-left-radius: 0px;
+        }
+    </style>
     <script type="text/javascript" src="js/main.min.js"></script>
     <script type="text/javascript">
         // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference#answer-29106129
