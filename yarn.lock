@@ -306,10 +306,10 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.nlark.com/tweetnacl/download/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
-uglifyjs@^2.4.11:
-  version "2.4.11"
-  resolved "https://registry.nlark.com/uglifyjs/download/uglifyjs-2.4.11.tgz#3440d64e045759589524418eb641c68bb90d113e"
-  integrity sha1-NEDWTgRXWViVJEGOtkHGi7kNET4=
+uglify-js@^3.14.3:
+  version "3.14.3"
+  resolved "https://registry.npmmirror.com/uglify-js/download/uglify-js-3.14.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fuglify-js%2Fdownload%2Fuglify-js-3.14.3.tgz#c0f25dfea1e8e5323eccf59610be08b6043c15cf"
+  integrity sha1-wPJd/qHo5TI+zPWWEL4ItgQ8Fc8=
 
 uri-js@^4.2.2:
   version "4.4.1"
