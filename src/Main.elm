@@ -96,14 +96,9 @@ view model =
         , Font.family
             [ Font.serif
             ]
-        , width
-            (fill
-                |> minimum (25 * defaultFontSize)
-            )
-        , height
-            (fill
-                |> minimum (30 * defaultFontSize)
-            )
+        , width fill
+        , height fill
+        , scrollbars
         ]
         ( showMainPanel model )
 
@@ -183,7 +178,7 @@ showLinks i18n =
         ( \lnk ->
             newTabLink
                 [ centerX
-                , paddingXY 40 20
+                , paddingXY 40 0
                 , Font.size 40
                 , Attr.class "link"
                     |> htmlAttribute
@@ -217,21 +212,20 @@ showMainPanel model =
                 , ( showSwitchLang model |> html )
                 ]
             )
-          , el
-              [ centerX
-              , alignTop
-              , paddingXY 0 20
-              ]
-              ( case ( model.ui_device.class, model.ui_device.orientation ) of
+        , el
+            [ centerX
+            , alignTop
+            ]
+            ( case ( model.ui_device.class, model.ui_device.orientation ) of
 
-                    ( Phone, Portrait ) ->
-                        column [ centerX ]
-                            ( showLinks i18n )
+                ( Phone, Portrait ) ->
+                    column [ centerX, paddingXY 0 40, spacingXY 0 40 ]
+                        ( showLinks i18n )
 
-                    ( _, _ ) ->
-                        row [  ]
-                            ( showLinks i18n )
-              )
+                ( _, _ ) ->
+                    row [ paddingXY 0 40 ]
+                        ( showLinks i18n )
+            )
         ]
 
 
