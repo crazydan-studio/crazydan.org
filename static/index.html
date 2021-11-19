@@ -62,8 +62,31 @@
                 height: 15em;
             }
         </style>
+        <script type="text/javascript">
+            function onReady() {
+                var app = Elm.Main.init({
+                    node: document.getElementById('app'),
+                    // https://guide.elm-lang.org/interop/flags.html
+                    flags: {
+                        lang: getFirstBrowserLanguage(),
+                        height: window.innerHeight,
+                        width: window.innerWidth
+                    }
+                });
+
+                var fadeTimeout = 500;
+                setTimeout(function () {
+                    document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
+                    document.getElementById('loading').style.opacity = '0';
+
+                    setTimeout(function () {
+                        document.getElementById('loading').remove();
+                    }, fadeTimeout);
+                }, fadeTimeout * 1.2);
+            }
+        </script>
     </head>
-    <body>
+    <body onload="onReady()">
         <div id="app"></div>
         <div id="loading">
             <!-- https://loading.io/spinner/ripple/-ripple-circle-scale-round-radar-radio -->
@@ -77,7 +100,10 @@
                 </circle>
             </svg>
         </div>
-        <script type="text/javascript" src="js/main.min.js"></script>
+
+        <!-- put stylesheet and script before the </body> to make sure the page is ready totally when fire the onload event -->
+        <link rel="stylesheet" href="index.css">
+
         <script type="text/javascript">
             // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference#answer-29106129
             function getFirstBrowserLanguage() {
@@ -106,29 +132,7 @@
 
                 return "";
             };
-
-            document.body.onload = function() {
-                var app = Elm.Main.init({
-                    node: document.getElementById('app'),
-                    // https://guide.elm-lang.org/interop/flags.html
-                    flags: {
-                        lang: getFirstBrowserLanguage(),
-                        height: window.innerHeight,
-                        width: window.innerWidth
-                    }
-                });
-
-                var fadeTimeout = 500;
-                setTimeout(function () {
-                    document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
-                    document.getElementById('loading').style.opacity = '0';
-
-                    setTimeout(function () {
-                        document.getElementById('loading').remove();
-                    }, fadeTimeout);
-                }, fadeTimeout * 1.2);
-            }
         </script>
-        <link rel="stylesheet" href="index.css">
+        <script type="text/javascript" src="js/main.min.js"></script>
     </body>
 </html>
