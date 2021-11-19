@@ -31,22 +31,14 @@ function getFirstBrowserLanguage() {
     return "";
 }
 
-const app = Elm.Main.init({
-    node: document.getElementById('app'),
-    // https://guide.elm-lang.org/interop/flags.html
-    flags: {
-        lang: getFirstBrowserLanguage(),
-        height: window.innerHeight,
-        width: window.innerWidth,
-    }
-});
-
-const fadeTimeout = 500;
-setTimeout(() => {
-    document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
-    document.getElementById('loading').style.opacity = '0';
-
-    setTimeout(() => {
-        document.getElementById('loading').remove();
-    }, fadeTimeout);
-}, fadeTimeout * 1.2);
+window.runApp = function() {
+    const app = Elm.Main.init({
+        node: document.getElementById('app'),
+        // https://guide.elm-lang.org/interop/flags.html
+        flags: {
+            lang: getFirstBrowserLanguage(),
+            height: window.innerHeight,
+            width: window.innerWidth,
+        }
+    });
+}

@@ -8,8 +8,7 @@
     "test": "elm-test",
     "start": "npm run dev",
     "dev": "webpack-dev-server --hot --colors --port 3000",
-    "build": "webpack",
-    "prod": "webpack -p",
+    "build": "webpack -p",
     "analyse": "elm-analyse -s -p 3001 -o"
   },
   "devDependencies": {

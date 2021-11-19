@@ -60,8 +60,23 @@
                 height: 15em;
             }
         </style>
+        <script>
+            function onReady() {
+                runApp();
+
+                var fadeTimeout = 500;
+                setTimeout(function() {
+                    document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
+                    document.getElementById('loading').style.opacity = '0';
+
+                    setTimeout(function() {
+                        document.getElementById('loading').remove();
+                    }, fadeTimeout);
+                }, fadeTimeout * 1.2);
+            }
+        </script>
     </head>
-    <body>
+    <body onload="onReady()">
         <div id="app"></div>
         <div id="loading">
             <!-- https://loading.io/spinner/ripple/-ripple-circle-scale-round-radar-radio -->
