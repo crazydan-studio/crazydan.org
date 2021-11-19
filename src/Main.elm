@@ -200,17 +200,17 @@ showMainPanel model =
         , height shrink
         ]
         [ el
-            [ centerX, alignTop ]
-            ( row [  ]
-                [ image
-                    [ Attr.class "logo"
-                        |> htmlAttribute
-                    ]
-                    { src = ( contextPath ++ "assets/img/logo.svg" )
-                    , description = ""
-                    }
-                , ( showSwitchLang model |> html )
+            [ centerX
+            , alignTop
+            , inFront <| showSwitchLang <| model
+            ]
+            ( image
+                [ Attr.class "logo"
+                    |> htmlAttribute
                 ]
+                { src = ( contextPath ++ "assets/img/logo.svg" )
+                , description = ""
+                }
             )
         , el
             [ centerX
@@ -252,16 +252,17 @@ getLangIcon lang =
             getLangIcon defaultLang
 
 
-showSwitchLang : Model -> Html Msg
+showSwitchLang : Model -> Element Msg
 showSwitchLang { lang, ui_langSwitchDropdown_toggled } =
     let
         selectedLangIcon = getLangIcon lang
         simpleLang = simpleLangCode lang
     in
-    Html.div
-        [ Attr.class "lang-dropdown"
+    el
+        [ alignBottom
+        , alignRight
         ]
-        [ Dropdown.dropdown
+        ( Dropdown.dropdown
             { identifier = "lang-dropdown"
             , toggleEvent = Dropdown.OnClick
             , drawerVisibleAttribute = Attr.class "visible"
@@ -321,4 +322,5 @@ showSwitchLang { lang, ui_langSwitchDropdown_toggled } =
                             ]
               , isToggled = ui_langSwitchDropdown_toggled
               }
-        ]
+            |> html
+        )

@@ -39,12 +39,6 @@ body {
     margin-top: -4px;
 }
 
-.lang-dropdown {
-    display: flex;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
 .dropdown .list .item:hover, .dropdown .toggle:hover {
     background-color: rgba(255, 255, 255, 0.74);
     cursor: pointer;
