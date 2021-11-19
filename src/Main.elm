@@ -206,7 +206,7 @@ showMainPanel model =
                     [ Attr.class "logo"
                         |> htmlAttribute
                     ]
-                    { src = ( contextPath ++ "asset/img/logo.svg" )
+                    { src = ( contextPath ++ "assets/img/logo.svg" )
                     , description = ""
                     }
                 , ( showSwitchLang model |> html )
@@ -232,12 +232,12 @@ showMainPanel model =
 langIcons =
     Dict.fromList
         [ ( "zh"
-            , { src = ( contextPath ++ "asset/img/flag/cn.svg" )
+            , { src = ( contextPath ++ "assets/img/flag/cn.svg" )
               , text = "中文"
             }
           )
         , ( "en"
-            , { src = ( contextPath ++ "asset/img/flag/gb.svg" )
+            , { src = ( contextPath ++ "assets/img/flag/gb.svg" )
               , text = "English"
             }
           )

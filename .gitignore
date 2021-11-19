@@ -1,5 +1,4 @@
 elm-stuff/
 dist/
-.build/
 node_modules/
-yarn-error.log
+*.log

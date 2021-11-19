@@ -10,22 +10,22 @@
         <meta itemprop="author" name="author" content="flytreeleft@crazydan.org">
         <meta itemprop="name" name="title" content="Crazydan Org.">
         <meta itemprop="url" content="https://crazydan.org/">
-        <meta itemprop="image" content="https://crazydan.org/asset/img/icon.png">
-        <meta itemprop="thumbnailUrl" content="https://crazydan.org/asset/img/icon.png">
+        <meta itemprop="image" content="https://crazydan.org/assets/img/icon.png">
+        <meta itemprop="thumbnailUrl" content="https://crazydan.org/assets/img/icon.png">
         <meta itemprop="description" name="description" content="Welcome to crazydan's ideal world.">
 
         <!-- Open Graph Metadata -->
         <meta property="og:type" content="video">
         <meta property="og:title" content="Crazydan Org.">
         <meta property="og:url" content="https://crazydan.org/">
-        <meta property="og:image" content="https://crazydan.org/asset/img/icon.png">
+        <meta property="og:image" content="https://crazydan.org/assets/img/icon.png">
         <meta property="og:description" content="Welcome to crazydan's ideal world.">
 
         <!-- Twitter Card Metadata -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Crazydan Org.">
         <meta name="twitter:description" content="Welcome to crazydan's ideal world.">
-        <meta name="twitter:image:src" content="https://crazydan.org/asset/img/icon.png">
+        <meta name="twitter:image:src" content="https://crazydan.org/assets/img/icon.png">
 
         <title>Crazydan - Welcome</title>
         <link rel="canonical" href="https://crazydan.org/">
@@ -60,31 +60,8 @@
                 height: 15em;
             }
         </style>
-        <script type="text/javascript">
-            function onReady() {
-                var app = Elm.Main.init({
-                    node: document.getElementById('app'),
-                    // https://guide.elm-lang.org/interop/flags.html
-                    flags: {
-                        lang: getFirstBrowserLanguage(),
-                        height: window.innerHeight,
-                        width: window.innerWidth
-                    }
-                });
-
-                var fadeTimeout = 500;
-                setTimeout(function () {
-                    document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
-                    document.getElementById('loading').style.opacity = '0';
-
-                    setTimeout(function () {
-                        document.getElementById('loading').remove();
-                    }, fadeTimeout);
-                }, fadeTimeout * 1.2);
-            }
-        </script>
     </head>
-    <body onload="onReady()">
+    <body>
         <div id="app"></div>
         <div id="loading">
             <!-- https://loading.io/spinner/ripple/-ripple-circle-scale-round-radar-radio -->
@@ -98,39 +75,5 @@
                 </circle>
             </svg>
         </div>
-
-        <!-- put stylesheet and script before the </body> to make sure the page is ready totally when fire the onload event -->
-        <link rel="stylesheet" href="index.css">
-
-        <script type="text/javascript">
-            // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference#answer-29106129
-            function getFirstBrowserLanguage() {
-                var nav = window.navigator,
-                browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'],
-                i,
-                language;
-
-                // support for HTML 5.1 "navigator.languages"
-                if (Array.isArray(nav.languages)) {
-                for (i = 0; i < nav.languages.length; i++) {
-                    language = nav.languages[i];
-                    if (language && language.length) {
-                    return language;
-                    }
-                }
-                }
-
-                // support for other well known properties in browsers
-                for (i = 0; i < browserLanguagePropertyKeys.length; i++) {
-                    language = nav[browserLanguagePropertyKeys[i]];
-                    if (language && language.length) {
-                        return language;
-                    }
-                }
-
-                return "";
-            };
-        </script>
-        <script type="text/javascript" src="js/main.min.js"></script>
     </body>
 </html>
