@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "homepage": "https://crazydan.org",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "test": "elm-test",
     "start": "npm run dev",

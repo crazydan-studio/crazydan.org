@@ -34,8 +34,8 @@ var common = {
         new HTMLWebpackPlugin({
             // Use this template to get basic responsive meta tags
             template: "src/index.html",
-            // inject details of output file at end of body
-            inject: "body",
+            // disable css and js inject to allow to put the resources at any location manually
+            inject: false,
         })
     ],
     resolve: {
@@ -166,11 +166,6 @@ if (MODE === "production") {
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
                 filename: "[name]-[hash].css",
-                // only for lazy loading css files like: import('index.css').then(() => { ... });
-                // https://github.com/webpack-contrib/mini-css-extract-plugin#function
-                insert: function(linkTag) {
-                    document.body.appendChild(linkTag);
-                },
             })
         ],
         module: {

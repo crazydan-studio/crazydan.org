@@ -1,6 +1,7 @@
 'use strict';
 
 import { Elm } from './Main';
+import './index.css';
 
 // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference#answer-29106129
 function getFirstBrowserLanguage() {
@@ -31,17 +32,13 @@ function getFirstBrowserLanguage() {
 }
 
 window.runApp = function() {
-    // lazy loading css file to support to append the css link at the end of the body
-    // https://webpack.js.org/concepts/under-the-hood/#chunks
-    import('./index.css').then(() => {
-        const app = Elm.Main.init({
-            node: document.getElementById('app'),
-            // https://guide.elm-lang.org/interop/flags.html
-            flags: {
-                lang: getFirstBrowserLanguage(),
-                height: window.innerHeight,
-                width: window.innerWidth,
-            }
-        });
+    const app = Elm.Main.init({
+        node: document.getElementById('app'),
+        // https://guide.elm-lang.org/interop/flags.html
+        flags: {
+            lang: getFirstBrowserLanguage(),
+            height: window.innerHeight,
+            width: window.innerWidth,
+        }
     });
 }
