@@ -166,6 +166,8 @@ if (MODE === "production") {
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
                 filename: "[name]-[hash].css",
+                // only for lazy loading css files like: import('index.css').then(() => { ... });
+                // https://github.com/webpack-contrib/mini-css-extract-plugin#function
                 insert: function(linkTag) {
                     document.body.appendChild(linkTag);
                 },
