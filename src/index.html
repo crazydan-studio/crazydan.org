@@ -73,14 +73,21 @@
                 runApp();
 
                 var fadeTimeout = 500;
-                setTimeout(function() {
-                    document.getElementById('loading').style.transition = (fadeTimeout / 1000.0) + 's';
-                    document.getElementById('loading').style.opacity = '0';
+                var checkPageReady = function () {
+                    if (document.getElementById('_page_is_ready_')) {
+                        var loading = document.getElementById('loading');
+                        loading.style.transition = (fadeTimeout / 1000.0) + 's';
+                        loading.style.opacity = '0';
 
-                    setTimeout(function() {
-                        document.getElementById('loading').remove();
-                    }, fadeTimeout);
-                }, fadeTimeout * 1.2);
+                        setTimeout(function () {
+                            loading.remove();
+                        }, fadeTimeout);
+                        return;
+                    }
+
+                    checkPageReady();
+                };
+                setTimeout(checkPageReady, fadeTimeout);
             }
         </script>
     </head>

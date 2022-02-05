@@ -226,6 +226,10 @@ showMainPanel model =
                     row [ paddingXY 0 40 ]
                         ( showLinks i18n )
             )
+        , el
+            [ Attr.id "_page_is_ready_" |> htmlAttribute
+            ]
+            none
         ]
 
 
